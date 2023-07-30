@@ -110,6 +110,7 @@ trait InviteTrait {
         try {
             $num_index = 0;
             $invitedPeople = Arr::map($invitedPeople,  function ($customer, $index) use ($num_index) {
+                $customer['trans_date'] = Carbon::parse($customer['trans_date'])->format('M d Y');
                 // check if person has both phone and email, use PHONE
                 if ($customer['is_invited'] && $customer['notify'] == true) {
                     if (!empty($customer['cust_email']) && !empty($customer['cust_phone'])) {
